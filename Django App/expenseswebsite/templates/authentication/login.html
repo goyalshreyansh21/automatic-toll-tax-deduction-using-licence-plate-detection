@@ -1,0 +1,169 @@
+{% extends "base_auth.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    /* Custom styles for the registration form */
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        /* height: 350px; */
+    }
+
+    .card-title {
+        color: #333;
+    }
+
+    .form-control {
+        border-radius: 10px;
+    }
+
+    #showPassword {
+        border-radius: 10px;
+    }
+
+    /* Gradient background effect */
+    body {
+        /* background: linear-gradient(to right, #92fe9d, #00c9ff); */
+        overflow: hidden;
+    }
+
+    /* Vehicle animation */
+    .vehicle {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        animation: moveVehicle 10s linear infinite;
+    }
+
+    @keyframes moveVehicle {
+        0% {
+            left: -100px;
+        }
+
+        100% {
+            left: 110%;
+        }
+    }
+
+    .vehicle img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    .car {
+        left: -100px;
+        /* Initial position of the car */
+    }
+
+    .bike {
+        left: -200px;
+        /* Initial position of the bike */
+    }
+    
+    /* Custom styles for messages */
+    .messages-container {
+        margin-top: 20px;
+    }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+    }
+
+    .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    .alert-info {
+        color: #0c5460;
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+    }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+
+        <div class="card mt-5">
+            <div class="card-body">
+                <div class="card-title py-3">
+                    <h4 class="text-center">Login to your Account</h4>
+                </div>
+
+                <!-- Display messages here -->
+                <div class="messages-container">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <input type="text" name="username" placeholder="Licence Plate" id="usernameField"
+                            class="form-control form-control-sm" value="{{fieldValues.username}}">
+                    </div>
+                    <div class="invalid_feedback invalid-feedback" style="display: none;"></div>
+                    
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" name="password" placeholder="Password" id="passwordField"
+                                class="form-control form-control-sm" style="margin-top: 20px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary showPasswordToggle" type="button"
+                                    id="showPassword" style="margin-top: 20px;">Show</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn"
+                        style="margin-top: 20px; width: 550px;">
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Vehicle images
+<div class="vehicle car" style="margin-top: 100px;">
+    <img src="../../expenseswebsite/static/img/car.png" alt="Car">
+</div>
+<div class="vehicle bike" style="margin-top: 200px;">
+    <img src="bike.png" alt="Bike">
+</div>  -->
+
+<script src="{% static 'js/register.js' %}"></script>
+<script>
+    
+    // Function to toggle password visibility
+    document.getElementById('showPassword').addEventListener('click', function () {
+        var passwordField = document.getElementById('passwordField');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    });
+</script>
+
+{% endblock content %}

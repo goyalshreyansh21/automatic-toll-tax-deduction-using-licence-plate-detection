@@ -1,0 +1,73 @@
+{% load static %}
+<nav class="col-md-2 d-none d-md-block bg-light sidebar" style="margin-top: 30px;">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column" style="margin-top: 30px;">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            <span data-feather="home"></span>
+            Dashboard 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'expenses' %}">
+            {% comment %} <span data-feather="file"></span> {% endcomment %}
+            Expenses
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'income' %}">
+            Add Money
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'balance' %}">
+              Balance
+          </a>
+      </li>
+        
+      </ul>
+
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <span>Summary</span>
+        <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+          <span data-feather="plus-circle"></span>
+        </a>
+      </h6>
+      <ul class="nav flex-column mb-2">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            {% comment %} <span data-feather="file-text"></span> {% endcomment %}
+            Expenses Summary
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            {% comment %} <span data-feather="file-text"></span> {% endcomment %}
+            Money Summary
+          </a>
+        </li>
+        
+      </ul>
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <span>Settings</span>
+        <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+          <span data-feather="plus-circle"></span>
+        </a>
+      </h6>
+      <ul class="nav flex-column mb-2">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'preferences' %}">
+            {% comment %} <span data-feather="file-text"></span> {% endcomment %}
+            General
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            {% comment %} <span data-feather="file-text"></span> {% endcomment %}
+            Acciount Settings
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
